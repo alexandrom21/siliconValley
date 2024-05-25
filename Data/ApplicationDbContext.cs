@@ -9,4 +9,6 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    public DbSet<siliconValley.Models.Registro> DataRegistro {get;set;}
 }
