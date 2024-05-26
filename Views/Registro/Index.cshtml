@@ -1,26 +1,41 @@
-@model siliconValley.Models.Registro
+@model IEnumerable<siliconValley.Models.Registro>
 
 @{
-    ViewData["Title"] = "Registro de Usuario";
+    ViewData["Title"] = "Index";
 }
 
-<h2>Registro de Usuario</h2>
+<h1>Index</h1>
 
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Job"></label>
-        <input asp-for="Job" class="form-control" />
-        <span asp-validation-for="Job" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Registrarse</button>
-</form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
 }
+    </tbody>
+</table>
